@@ -1,4 +1,4 @@
-package com.droidko.reactivesample.fragments;
+package com.droidko.reactivesample.views.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -30,8 +30,8 @@ public abstract class BaseFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         onInitialize(view);
-        onPopulate(view);
-        onSetListeners(view);
+        onDataBinding(view);
+        onPrepareUi(view);
     }
 
     /**
@@ -40,13 +40,14 @@ public abstract class BaseFragment extends Fragment {
     protected void onInitialize(View rootView) { };
 
     /**
-     * Lifecycle callback for populating the fragment with data
+     * Lifecycle callback for getting a reference of the DatBinding generated class
      */
-    protected void onPopulate(View rootView) { };
+    protected void onDataBinding(View rootView) { };
 
     /**
-     * Lifecycle callback for setting listeners (e.g: click listeners, text watchers, etc.)
+     * Lifecycle callback for making modifications on the UI after the initialization and the
+     * DataBinding are both complete
      */
-    protected void onSetListeners(View rootView) { };
+    protected void onPrepareUi(View rootView) { };
 
 }

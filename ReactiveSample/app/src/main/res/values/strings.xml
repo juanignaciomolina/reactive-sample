@@ -4,7 +4,7 @@
     <string name="general_app_name">ReactiveSample</string>
 
     <!-- Login -->
-    <string name="login_button">Log In</string>
+    <string name="login_button">Get started</string>
     <string name="login_email_hint">Email</string>
     <string name="login_password_hint">Password</string>
     <string name="login_error_invalid_email">Must be a valid email</string>

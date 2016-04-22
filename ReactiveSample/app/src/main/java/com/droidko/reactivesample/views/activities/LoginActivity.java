@@ -1,8 +1,8 @@
-package com.droidko.reactivesample.activities;
+package com.droidko.reactivesample.views.activities;
 
 import android.support.v4.app.Fragment;
 
-import com.droidko.reactivesample.fragments.LoginFragment;
+import com.droidko.reactivesample.views.fragments.LoginFragment;
 
 public class LoginActivity extends BaseActivity {
 

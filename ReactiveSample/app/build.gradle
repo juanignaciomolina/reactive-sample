@@ -1,8 +1,24 @@
 apply plugin: 'com.android.application'
+apply plugin: 'me.tatarka.retrolambda'
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'me.tatarka:gradle-retrolambda:3.3.0-beta4'
+    }
+}
 
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.3"
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 
     defaultConfig {
         applicationId "com.droidko.reactivesample"
@@ -12,12 +28,20 @@ android {
         versionName "1.0"
     }
 
+    dataBinding {
+        enabled = true
+    }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+}
+
+repositories {
+    mavenCentral() // Required because retrolambda is on maven central
 }
 
 dependencies {
@@ -36,5 +60,4 @@ dependencies {
     compile 'com.firebase:firebase-client-android:2.5.2+'
 
     // UI dependencies
-    compile 'com.jakewharton:butterknife:7.0.1'
 }

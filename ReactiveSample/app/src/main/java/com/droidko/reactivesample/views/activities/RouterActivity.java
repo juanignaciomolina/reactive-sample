@@ -1,9 +1,9 @@
-package com.droidko.reactivesample.activities;
+package com.droidko.reactivesample.views.activities;
 
 import android.app.Activity;
 import android.os.Bundle;
 
-import com.droidko.reactivesample.firebase.FirebaseManager;
+import com.droidko.reactivesample.firebase.AuthManager;
 import com.droidko.reactivesample.utils.NavigationUtils;
 
 /* *
@@ -19,7 +19,7 @@ public class RouterActivity extends Activity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (FirebaseManager.isUserLoggedIn()) NavigationUtils.jumpTo(this, HomeActivity.class);
+        if (AuthManager.isUserLoggedIn()) NavigationUtils.jumpTo(this, HomeActivity.class);
         else NavigationUtils.jumpTo(this, LoginActivity.class);
         finish();
     }

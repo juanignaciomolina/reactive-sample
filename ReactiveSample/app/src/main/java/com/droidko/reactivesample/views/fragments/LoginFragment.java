@@ -1,0 +1,49 @@
+package com.droidko.reactivesample.views.fragments;
+
+import android.databinding.DataBindingUtil;
+import android.graphics.drawable.TransitionDrawable;
+import android.os.Bundle;
+import android.view.View;
+
+import com.droidko.reactivesample.R;
+import com.droidko.reactivesample.databinding.FragmentLoginBinding;
+import com.droidko.reactivesample.viewmodels.LoginViewModel;
+
+public class LoginFragment extends BaseFragment {
+
+    // Vars
+    private FragmentLoginBinding mBinding;
+    private LoginViewModel mViewModel;
+
+    public static LoginFragment newInstance() {
+
+        Bundle args = new Bundle();
+
+        LoginFragment fragment = new LoginFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    @Override
+    protected int onLayoutRequested() {
+        return R.layout.fragment_login;
+    }
+
+    @Override
+    protected void onInitialize(View rootView) {
+        mViewModel = new LoginViewModel(getContext());
+    }
+
+    @Override
+    protected void onDataBinding(View rootView) {
+        mBinding = DataBindingUtil.setContentView(getActivity(), R.layout.fragment_login);
+
+        mBinding.setViewModel(mViewModel);
+    }
+
+    @Override
+    protected void onPrepareUi(View rootView) {
+        TransitionDrawable transition = (TransitionDrawable) mBinding.rootLayout.getBackground();
+        transition.startTransition(8000);
+    }
+}

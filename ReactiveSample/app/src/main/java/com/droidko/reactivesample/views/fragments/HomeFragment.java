@@ -1,4 +1,4 @@
-package com.droidko.reactivesample.fragments;
+package com.droidko.reactivesample.views.fragments;
 
 import android.os.Bundle;
 

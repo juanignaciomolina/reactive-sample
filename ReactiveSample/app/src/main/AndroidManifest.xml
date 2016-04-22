@@ -16,7 +16,7 @@
 
         <!-- Routing -->
         <activity
-            android:name=".activities.RouterActivity"
+            android:name=".views.activities.RouterActivity"
             android:theme="@android:style/Theme.NoDisplay"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait"
@@ -29,14 +29,14 @@
 
         <!-- Login -->
         <activity
-            android:name=".activities.LoginActivity"
+            android:name=".views.activities.LoginActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait">
         </activity>
 
         <!-- Home -->
         <activity
-            android:name=".activities.HomeActivity"
+            android:name=".views.activities.HomeActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait">
         </activity>
