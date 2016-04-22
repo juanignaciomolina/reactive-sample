@@ -1,7 +1,8 @@
 package com.droidko.reactivesample.views.fragments;
 
+import android.animation.ValueAnimator;
 import android.databinding.DataBindingUtil;
-import android.graphics.drawable.TransitionDrawable;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 
@@ -43,7 +44,28 @@ public class LoginFragment extends BaseFragment {
 
     @Override
     protected void onPrepareUi(View rootView) {
-        TransitionDrawable transition = (TransitionDrawable) mBinding.rootLayout.getBackground();
-        transition.startTransition(8000);
+        startBackgroundColorChange();
+    }
+
+    private void startBackgroundColorChange() {
+        ValueAnimator anim = ValueAnimator.ofFloat(0, 1);   // animate from 0 to 1
+        anim.setDuration(36000);
+
+        final float[] hsv  = new float[3];                  // transition color
+
+        hsv[0] = 0; // Initial Hue at 0 degrees
+        hsv[1] = 191; // 75% of Saturation
+        hsv[2] = 191; // 75% of Value
+
+        anim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(){
+            @Override public void onAnimationUpdate(ValueAnimator animation) {
+                hsv[0] = 255 * animation.getAnimatedFraction();
+                mBinding.rootLayout.setBackgroundColor(Color.HSVToColor(hsv));
+            }
+        });
+
+        anim.setRepeatCount(ValueAnimator.INFINITE);
+        anim.setRepeatMode(ValueAnimator.REVERSE);
+        anim.start();
     }
 }
