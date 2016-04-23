@@ -43,10 +43,13 @@ public class LoginFragment extends BaseFragment {
 
     @Override
     protected void onPrepareUi(View rootView) {
-        startBackgroundColorChange();
+        AnimationUtils.setAdvancedCyclicBackgroundColor(mBinding.rootLayout).start();
     }
 
-    private void startBackgroundColorChange() {
-        AnimationUtils.setAdvancedCyclicBackgroundColor(mBinding.rootLayout).start();
+    @Override
+    public void onDestroy() {
+        mViewModel.destroy();
+
+        super.onDestroy();
     }
 }
