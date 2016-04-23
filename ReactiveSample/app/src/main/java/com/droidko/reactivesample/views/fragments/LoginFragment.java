@@ -6,7 +6,7 @@ import android.view.View;
 
 import com.droidko.reactivesample.R;
 import com.droidko.reactivesample.databinding.FragmentLoginBinding;
-import com.droidko.reactivesample.utils.AnimationUtils;
+import com.droidko.reactivesample.utils.Colorify;
 import com.droidko.reactivesample.viewmodels.LoginViewModel;
 
 public class LoginFragment extends BaseFragment {
@@ -36,14 +36,14 @@ public class LoginFragment extends BaseFragment {
 
     @Override
     protected void onDataBinding(View rootView) {
-        mBinding = DataBindingUtil.setContentView(getActivity(), R.layout.fragment_login);
+        mBinding = DataBindingUtil.setContentView(getActivity(), onLayoutRequested());
 
         mBinding.setViewModel(mViewModel);
     }
 
     @Override
     protected void onPrepareUi(View rootView) {
-        AnimationUtils.setAdvancedCyclicBackgroundColor(mBinding.rootLayout).start();
+        Colorify.setCyclicBackgroundColor(mBinding.rootLayout).start();
     }
 
     @Override

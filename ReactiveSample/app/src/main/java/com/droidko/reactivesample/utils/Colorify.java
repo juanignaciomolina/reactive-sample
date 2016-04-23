@@ -7,18 +7,20 @@ import android.view.View;
 
 import java.util.Random;
 
-public class AnimationUtils {
+public class Colorify {
 
+    // Constants
+    public static final float HUE_MIN = 0.0f;
+    public static final float HUE_MAX = 360.0f;
+    public static final float LIGHTNESS_MIN = 0.25f;
+    public static final float LIGHTNESS_MAX = 0.75f;
 
-    public static ValueAnimator setAdvancedCyclicBackgroundColor(View targetView) {
+    public static ValueAnimator setCyclicBackgroundColor(View targetView) {
 
         ValueAnimator anim = ValueAnimator.ofFloat(0, 1);   // animate from 0 to 1
         anim.setDuration(36000);
 
         final float[] hsl  = new float[3];                  // transition color
-
-        final float lightness_min = 0.25f;
-        final float lightness_max = 0.75f;
 
         final Random random = new Random();
 
@@ -29,8 +31,8 @@ public class AnimationUtils {
         anim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(){
             @Override public void onAnimationUpdate(ValueAnimator animation) {
                 if (animation.getAnimatedFraction() == 0 )
-                    hsl[2] = random.nextFloat() * (lightness_max - lightness_min) + lightness_min;
-                hsl[0] = 360 * animation.getAnimatedFraction();
+                    hsl[2] = random.nextFloat() * (LIGHTNESS_MAX - LIGHTNESS_MIN) + LIGHTNESS_MIN;
+                hsl[0] = HUE_MAX * animation.getAnimatedFraction();
                 targetView.setBackgroundColor(ColorUtils.HSLToColor(hsl));
             }
         });
@@ -38,6 +40,22 @@ public class AnimationUtils {
         anim.setRepeatCount(ValueAnimator.INFINITE);
         anim.setRepeatMode(ValueAnimator.REVERSE);
         return anim;
+    }
+
+    public static int getRandomColor() {
+        final float[] hsl  = new float[3];
+        final Random random = new Random();
+
+        // Random value for hue
+        hsl[0] = random.nextFloat() * (HUE_MAX - HUE_MIN) + HUE_MIN;
+
+        // 100% of Saturation
+        hsl[1] = 1.0f;
+
+        // Random value for lightness
+        hsl[2] = random.nextFloat() * (LIGHTNESS_MAX - LIGHTNESS_MIN) + LIGHTNESS_MIN;
+
+        return ColorUtils.HSLToColor(hsl);
     }
 
 }
